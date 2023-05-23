@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -13,16 +14,22 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        private EfCategoryDal efCategoryDal;
 
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
         }
 
+        public ProductManager(EfCategoryDal efCategoryDal)
+        {
+            this.efCategoryDal = efCategoryDal;
+        }
+
         public List<Product> GetAll()
         {
             //İş kodları
-            return _productDal.GetAll();
+            return _productDal;
         }
 
         public List<Product> GetAllByCategoryId(int id)
