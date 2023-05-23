@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Entities
+namespace Core.DataAccess.EntityFramework
 {
-    public interface IEntity
+    internal class EfEntityRepositoryBase
     {
     }
 }
