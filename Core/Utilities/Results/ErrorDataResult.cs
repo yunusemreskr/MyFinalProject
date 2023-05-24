@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Results
 {
-    //Temel voidler için başlangıç
-    public interface IResult
+    internal class ErrorDataResult
     {
-        bool Success { get; }
-        string Message { get; }
     }
 }
