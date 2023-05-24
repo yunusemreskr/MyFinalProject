@@ -12,8 +12,19 @@ public class Program
     //Open Closed Principle
     private static void Main(string[] args)
     {
+        Console.WriteLine("-------------------------------------------------");
         ProductTest();
+        Console.WriteLine("-------------------------------------------------");
         //CategoryTest();
+
+
+
+
+
+
+
+
+
 
     }
 
