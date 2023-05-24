@@ -18,7 +18,12 @@ public class Program
         Console.WriteLine("-------------------------------------------------");
         //CategoryTest();
 
-
+        //ProductManager productManager = new ProductManager(new EfProductDal());
+        //var result = productManager.GetByUnitPrice(10, 15);
+        //foreach (var product in result.Data)
+        //{
+        //    Console.WriteLine(product.ProductName);
+        //}
 
 
 
