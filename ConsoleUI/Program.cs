@@ -57,7 +57,7 @@ public class Program
                 Console.WriteLine(product.ProductName + "/" + product.CategoryName);
                 
             }
-            Console.WriteLine(Messages.ProductsListed);
+            Console.WriteLine(result.Message);
         }
         else 
         {
