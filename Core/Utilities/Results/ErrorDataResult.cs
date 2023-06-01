@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Results
 {
-    public class ErrorDataResult<T> : DataResult<T>
+    public class ErrorResult<T> : DataResult<T>
     {
-        public ErrorDataResult(T data, string message) : base(data, false, message)
+        public ErrorResult(T data, string message) : base(data, false, message)
         {
 
         }
 
-        public ErrorDataResult(T data) : base(data, false)
+        public ErrorResult(T data) : base(data, false)
         {
 
         }
 
-        public ErrorDataResult(string message) : base(default, false, message)
+        public ErrorResult(string message) : base(default, false, message)
         {
 
         }
 
-        public ErrorDataResult() : base(default, false)
+        public ErrorResult() : base(default, false)
         {
 
         }
