@@ -4,6 +4,7 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspect.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -24,37 +25,34 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, ICategoryService categoryService)
         {
             _productDal = productDal;
+            _categoryService = categoryService;
         }
 
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            //Aynı isimde ürün eklenemez
+            //Aynı isimde ürün eklenemez.
+            //Eğer mevcut kategori sayısı 15'i geçtiyse sisteme yeni ürün eklenemez.
+           
 
-            if (CheckIfProductNameExists(product.ProductName).Success)
+            IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName), 
+                CheckIfProductCountOfCategoryCorrect(product.CategoryId),
+                CheckIfCategoryLimitExceded());
+
+            if (result !=null)
             {
-                return new SuccessResult();
+                return result;
             }
-            
 
+            _productDal.Add(product);
 
-            if (CheckIfProductCountOfCategoryCorrect(product.CategoryId).Success)
-            {
-                if (CheckIfProductNameExists(product.ProductName).Success)
-                {
-                    _productDal.Add(product);
-
-                    return new SuccessResult(Messages.ProductAdded);
-                }
-                
-            }
-            return new ErrorResult();
-            
-
+            return new SuccessResult(Messages.ProductAdded);
+                       
         }
 
         
@@ -121,6 +119,15 @@ namespace Business.Concrete
             if (result)
             {
                 return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+            return new SuccessResult();
+        }
+        private IResult CheckIfCategoryLimitExceded()
+        {
+            var result = _categoryService.GetAll();
+            if (result.Data.Count>15)
+            {
+                return new ErrorResult(Messages.CategoryLimitExceded);
             }
             return new SuccessResult();
         }
