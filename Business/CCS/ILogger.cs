@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Business.CCS
 {
-    internal interface ILogger
+    public interface ILogger
     {
+        void Log();
     }
 }
