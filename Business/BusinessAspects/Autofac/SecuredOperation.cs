@@ -3,6 +3,7 @@ using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Http;
+using Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
