@@ -1,7 +1,6 @@
 ﻿using Business.Constants;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
-using Microsoft.AspNetCore.Http;
 using Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Core.Utilities.IoC;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.BusinessAspects.Autofac
 {
